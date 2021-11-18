@@ -12,3 +12,6 @@ And visualization of after registration:
 
 The final img becomes a gray scale img  without shadows which is registered to the fixes domain, and is saved on the same name as the original non registered img in DICOM format
 
+
+If code is utilized please do cite. 
+Feel free to start an issue if there is any problem with the code, im happy to help. 
