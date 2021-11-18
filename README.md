@@ -3,6 +3,7 @@
 MATLAB code for iterative rigid registratio of DICOM MRI files in 2D, can also be changed to affined, similar and transform
 
 Including visualization of before:
+
 <img width="477" alt="reg_rigid_before" src="https://user-images.githubusercontent.com/56411446/142409633-8d630924-2f2f-49c5-a85a-d6d5f4fc9229.png">
 
 And visualization of after registration:
