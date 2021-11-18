@@ -10,5 +10,5 @@ And visualization of after registration:
 
 <img width="430" alt="reg_rigid_After" src="https://user-images.githubusercontent.com/56411446/142409736-decaa41e-7a76-4fe8-830b-1f829c091bec.png">
 
-The final img becomes a gray scale img  without shadows which is registered to the fixes domain
+The final img becomes a gray scale img  without shadows which is registered to the fixes domain, and is saved on the same name as the original non registered img in DICOM format
 
