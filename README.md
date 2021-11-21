@@ -13,7 +13,7 @@ And visualization of after registration:
 The final img becomes a gray scale img  without shadows which is registered to the fixes domain, and is saved on the same name as the original non registered img in DICOM format
 
 
-Futher this resposityr inludes a dicom to png converter in python, with intensity normalization, to obtain intensity normalized png files,can likewise be used for intensity normalizing DICOM images
+Futher this resposityr inludes an interative dicom to png converter in python, with intensity normalization, to obtain intensity normalized png files,can likewise be used for intensity normalizing DICOM images
 
 If codes is used please do cite. 
 Feel free to start an issue if there is any problem with the code, im happy to help. 
