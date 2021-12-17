@@ -15,7 +15,7 @@ def get_numbers_from_filename(input):
 
 # Missing need to exract specific part of file name
 
-for f in glob.glob('E:/AAU/tracking - Copy - Copy/Dec 6, 2019/scans/patches/*.png'):
+for f in glob.glob('path for templates binary/*.png'):
     print('Loading new patch')
     img = cv.imread(f)
     gray = cv.cvtColor(img, cv.COLOR_RGB2GRAY)
@@ -59,7 +59,7 @@ for f in glob.glob('E:/AAU/tracking - Copy - Copy/Dec 6, 2019/scans/patches/*.pn
     patch_num = name[1]
     # s3 = s[]
     # print('S1: ', s1, 'S2: ', s2)
-    if len(numb) == 1:
+    if len(numb) == 1: #Check to see if anything is detected
         # number_str.zfill(5)
         numb = numb.zfill(1)
         # print('Numb with 0', numb)
@@ -70,14 +70,14 @@ for f in glob.glob('E:/AAU/tracking - Copy - Copy/Dec 6, 2019/scans/patches/*.pn
         print('patch is black')
     else:
         hi= z[0]
-        path1 = 'E:/AAU/tracking - Copy - Copy/Dec 6, 2019/scans/patches/'+hi
+        path1 = '/'+hi # If detected load template
         print('Path 1', path1)
         patch = cv.imread(path1)
         print('patch', patch)
-        path12 = 'E:/AAU/tracking - Copy - Copy/Dec 6, 2019/scans/gt_gt_IMG00'
+        path12 = '/' # Load img to be matched to 
         print('path12', path12)
 
-        path = 'E:/AAU/tracking - Copy - Copy/Dec 6, 2019/scans/gt_gt_IMG00'
+        path = '/'
         dir1 = os.path.dirname(os.path.dirname(path))
         print('Directory path1 ', dir1)
         dirname12 = os.path.split(dir1)[1]
