@@ -1,6 +1,7 @@
 import cv2 as cv
 import numpy as np
-
+import PIL
+from PIL import Image, ImageDraw
 
 path = 'E:/AAU/blob_detection/gt_IMG0018.png'
 path1 = 'E:/AAU/blob_detection/gt_gt_IMG0018.png'
@@ -9,7 +10,7 @@ blob_img = cv.resize(blob_img,(768, 768))
 
 real_img = cv.imread(path1, cv.IMREAD_GRAYSCALE)
 real_img = cv.resize(real_img,(768, 768))
-
+i = 1
 
 from math import sqrt
 from skimage import data
@@ -75,19 +76,40 @@ for idx, (blobs, color) in enumerate(sequence):
         temp = re.findall(r'\d+', coord)
         #crop_img = real_img[y:(y + 2 * r+ 5), x:(x + 2 * r+5)]
         res = list(map(int, temp))
-
-        # print result
         print("The numbers list is : " + str(res))
-        print("The numbers list is : "  + ' x ' + str(int(res[0])) + ' y ' + str(int(res[1])))
-        x = res[0]
-        y = res[1]
+        print("The numbers list is : " + ' x ' + str(int(res[0])) + ' y ' + str(int(res[1])))
+
         r = str(res[2] +1) + '.' + str(res[3])
         print('r', r)
         r = int(res[2] + 1)
+        x = res[0]-8-r
+        y = res[1]-8-r
+        img = Image.open(path1).convert("RGB")
+        npImage = np.array(img)
+        #h, w = img.size
+        h = y + r + 8
+        w = x + r + 8
+        # Create same size alpha layer with circle
+        alpha = Image.new('L', img.size, 0)
+        draw = ImageDraw.Draw(alpha)
+        draw.pieslice([y, x, h, w], 0, 360, fill=255)
 
+        # Convert alpha Image to numpy array
+        npAlpha = np.array(alpha)
+
+        # Add alpha layer to RGB
+        npImage = np.dstack((npImage, npAlpha))
+
+        # Save with alpha
+        Image.fromarray(npImage).save('results_'+'LN_'+str(i)+'.png')
+
+        # print result
+
+        i += 1
         #crop_img = real_img[y:(y + 2 * r+ 5), x:(x + 2 * r+5)]
         #cv.imwrite('E:/LN_region' + '.png', crop_img)
         print(coord)
+
     ax.set_axis_off()
 plt.tight_layout()
 plt.show()
