@@ -10,7 +10,7 @@ interest = []
 file_name_x = []
 file_name_y = []
 j = 1
-for f in glob.glob('E:/AAU/blob_detection/blob_templates/18/Slice*.png'):
+for f in glob.glob('E:/AAU/blob_detection/blob_templates/Slice*.png'):
     file = f
     template = cv.imread(f)
     file = os.path.basename(file)
@@ -68,6 +68,11 @@ for f in glob.glob('E:/AAU/blob_detection/blob_templates/18/Slice*.png'):
         final_list = [nm for ps in str_list for nm in full_list if ps in nm]
 
         return final_list
+    def get_file_names_with_strings_y(str_list,input_list):
+        full_list = input_list
+        final_list = [nm for ps in str_list for nm in full_list if ps in nm]
+
+        return final_list
 
 
     x_coord = [X, x1, x2, x3, x5, x6, x7, x8, x9]
@@ -82,8 +87,10 @@ for f in glob.glob('E:/AAU/blob_detection/blob_templates/18/Slice*.png'):
     #files_x1 = get_file_names_with_strings(['_' + str(X) + '_', '_' + str(x1) + '_', '_' + str(x2) + '_', '_' + str(x3) + '_', '_' + str(x5) + '_', '_' + str(x6) + '_', '_' + str(x7) + '_', '_' + str(x8) + '_', '_' + str(x9) + '_'] and ['_' + str(Y) + '.png', '_' + str(y1) + '.png', '_' + str(y2) + '.png', '_' + str(y3) + '.png', '_' + str(y4) + '.png'])
     files_x1 = get_file_names_with_strings(
         ['_' + str(X) + '_', '_' + str(x1) + '_', '_' + str(x2) + '_', '_' + str(x3) + '_', '_' + str(x5) + '_',
-         '_' + str(x6) + '_', '_' + str(x7) + '_', '_' + str(x8) + '_', '_' + str(x9) + '_'] , path='E:/AAU/blob_detection/blob_templates/18/')
+         '_' + str(x6) + '_', '_' + str(x7) + '_', '_' + str(x8) + '_', '_' + str(x9) + '_'] , path='E:/AAU/blob_detection/blob_templates/')
 
+    y_con = get_file_names_with_strings_y(['_' + str(Y) + '.png', '_' + str(y1) + '.png', '_' + str(y2) + '.png', '_' + str(y3) + '.png', '_' + str(y4) + '.png', '_' + str(y5) + '.png', '_' + str(y6) + '.png', '_' + str(y7) + '.png', '_' + str(y8) + '.png'], files_x1)
+    print('y files', y_con)
     #files_x = get_file_names_with_strings(['_' + X + '_' + y1])
     LN_numb = j
     for i in range(len(files_x1)):
@@ -93,7 +100,7 @@ for f in glob.glob('E:/AAU/blob_detection/blob_templates/18/Slice*.png'):
         #cv.imwrite('E:/AAU/blob_detection/LN/LN_' + str(j) + files_x1[i-1], tempel)
         #os.remove('E:/AAU/blob_detection/blob_templates/' + files_x1[i-1])
     j = j + 1
-    print('files_x', files_x1, 'len', len(files_x1))
+    print('files_x', y_con, 'len', len(y_con))
 
     #print('tab', '_' + str(X)  + '_' + str(y1))
     '''
