@@ -10,7 +10,7 @@ interest = []
 file_name_x = []
 file_name_y = []
 j = 1
-for f in glob.glob('E:/AAU/blob_detection/blob_templates/Slice*.png'):
+for f in glob.glob('E:/AAU/blob_detection/blob_templates/18/Slice*.png'):
     file = f
     template = cv.imread(f)
     file = os.path.basename(file)
@@ -31,17 +31,17 @@ for f in glob.glob('E:/AAU/blob_detection/blob_templates/Slice*.png'):
     x8 = int(X) - 3
     x9 = int(X) - 4
     print('Xs', X, x1, x2, x3, x5, x6, x7, x8, x9)
-    y1 = int(int(Y) - 2)
+    y1 = int(int(Y) +1)
     y2 = int(Y) + 2
 
     y3 = int(Y) + 3
     y4 = int(Y) + 4
-    y5 = int(Y) + 5
-    y6 = int(Y) + 6
-    y7 = int(Y) + 7
-    y8 = int(Y) + 8
-    y9 = int(Y) + 9
-    print('Ys', Y, y1, y2, y3, y4, y5, y6, y7, y8, y9)
+    y5 = int(Y) - 1
+    y6 = int(Y) - 2
+    y7 = int(Y) - 3
+    y8 = int(Y) - 4
+
+    print('Ys', Y, y1, y2, y3, y4, y5, y6, y7, y8)
     # Cehcj is part of name in folder
     for i in glob.glob('E:/AAU/blob_detection/blob_templates/Slice*.png'):
         file1 = i
@@ -63,8 +63,8 @@ for f in glob.glob('E:/AAU/blob_detection/blob_templates/Slice*.png'):
     '''
 
 
-    def get_file_names_with_strings(str_list):
-        full_list = os.listdir("E:/AAU/blob_detection/blob_templates/")
+    def get_file_names_with_strings(str_list, path):
+        full_list = os.listdir(path)
         final_list = [nm for ps in str_list for nm in full_list if ps in nm]
 
         return final_list
@@ -79,12 +79,16 @@ for f in glob.glob('E:/AAU/blob_detection/blob_templates/Slice*.png'):
          '_' + str(x2) + '_', '_' + str(x3) + '_', '_' + str(x4) + '_', '_' + str(x5) + '_', '_' + str(x6) + '_',
          '_' + str(x7) + '_', '_' + str(x8) + '_', '_' + str(x9) + '_'])
     '''
-    files_x1 = get_file_names_with_strings(['_' + str(X) + '_', '_' + str(x1) + '_', '_' + str(x2) + '_', '_' + str(x3) + '_', '_' + str(x5) + '_', '_' + str(x6) + '_', '_' + str(x7) + '_', '_' + str(x8) + '_', '_' + str(x9) + '_'])
+    #files_x1 = get_file_names_with_strings(['_' + str(X) + '_', '_' + str(x1) + '_', '_' + str(x2) + '_', '_' + str(x3) + '_', '_' + str(x5) + '_', '_' + str(x6) + '_', '_' + str(x7) + '_', '_' + str(x8) + '_', '_' + str(x9) + '_'] and ['_' + str(Y) + '.png', '_' + str(y1) + '.png', '_' + str(y2) + '.png', '_' + str(y3) + '.png', '_' + str(y4) + '.png'])
+    files_x1 = get_file_names_with_strings(
+        ['_' + str(X) + '_', '_' + str(x1) + '_', '_' + str(x2) + '_', '_' + str(x3) + '_', '_' + str(x5) + '_',
+         '_' + str(x6) + '_', '_' + str(x7) + '_', '_' + str(x8) + '_', '_' + str(x9) + '_'] , path='E:/AAU/blob_detection/blob_templates/18/')
+
     #files_x = get_file_names_with_strings(['_' + X + '_' + y1])
     LN_numb = j
     for i in range(len(files_x1)):
         print('i', i)
-        os.rename(r'E:/AAU/blob_detection/blob_templates/'+files_x1[i-1], r'E:/AAU/blob_detection/LN/LN_' + str(j) + '_' + files_x1[i-1])
+        #os.rename(r'E:/AAU/blob_detection/blob_templates/'+files_x1[i-1], r'E:/AAU/blob_detection/LN/LN_' + str(j) + '_' + files_x1[i-1])
         #tempel = cv.imread('E:/AAU/blob_detection/blob_templates/' + files_x1[i-1])
         #cv.imwrite('E:/AAU/blob_detection/LN/LN_' + str(j) + files_x1[i-1], tempel)
         #os.remove('E:/AAU/blob_detection/blob_templates/' + files_x1[i-1])
