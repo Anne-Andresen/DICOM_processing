@@ -10,7 +10,7 @@ interest = []
 file_name_x = []
 file_name_y = []
 j = 1
-for f in glob.glob('E:/AAU/blob_detection/blob_templates/Slice*.png'):
+for f in glob.glob('E:/AAU/blob/blob_template/Slice*.png'):
     file = f
     template = cv.imread(f)
     file = os.path.basename(file)
@@ -38,21 +38,21 @@ for f in glob.glob('E:/AAU/blob_detection/blob_templates/Slice*.png'):
     y2 = int(Y) + 2
 
     y3 = int(Y) + 3
-    y4 = int(Y) + 4
+    #y4 = int(Y) + 4
     y5 = int(Y) - 1
     y6 = int(Y) - 2
     y7 = int(Y) - 3
-    y8 = int(Y) - 4
+    #y8 = int(Y) - 4
 
-    print('Ys', Y, y1, y2, y3, y4, y5, y6, y7, y8)
+    print('Ys', Y, y1, y2, y3, y5, y6, y7)
     original_slice = int(temp1[0])
     S1 = original_slice - 1
     S2 = original_slice - 2
-    S3 = original_slice - 3
+    #S3 = original_slice - 3
     S4 = original_slice + 1
     S5 = original_slice + 2
-    S6 = original_slice + 3
-    print('Slices:', original_slice, S1, S2, S3, S4, S5, S6)
+    #S6 = original_slice + 3
+    print('Slices:', original_slice, S1, S2, S4, S5)
     '''
     # Cehcj is part of name in folder
     for i in glob.glob('E:/AAU/blob_detection/blob_templates/Slice*.png'):
@@ -109,30 +109,43 @@ for f in glob.glob('E:/AAU/blob_detection/blob_templates/Slice*.png'):
     files_x1 = get_file_names_with_strings(
         ['_' + str(X) + '_', '_' + str(x1) + '_', '_' + str(x2) + '_', '_' + str(x3) + '_', '_' + str(x5) + '_',
          '_' + str(x6) + '_', '_' + str(x7) + '_', '_' + str(x8) + '_', '_' + str(x9) + '_'],
-        path='E:/AAU/blob_detection/blob_templates/')
+        path='E:/AAU/blob/blob_template/')
 
     y_con = get_file_names_with_strings_y(
         ['_' + str(Y) + '.png', '_' + str(y1) + '.png', '_' + str(y2) + '.png', '_' + str(y3) + '.png',
-         '_' + str(y4) + '.png', '_' + str(y5) + '.png', '_' + str(y6) + '.png', '_' + str(y7) + '.png',
-         '_' + str(y8) + '.png'], files_x1)
-
+          '_' + str(y5) + '.png', '_' + str(y6) + '.png', '_' + str(y7) + '.png'], files_x1)
+    print('y files', y_con)
     depth_con = get_file_names_with_strings_depth_constraint(
         ['Slice_00' + str(original_slice) + '_', 'Slice_00' + str(S1) + '_', 'Slice_00' + str(S2) + '_',
-         'Slice_00' + str(S3) + '_', 'Slice_00' + str(S4) + '_', 'Slice_00' + str(S5) + '_',
-         'Slice_00' + str(S6) + '_'], y_con)
-    print('y files', y_con)
+          'Slice_00' + str(S4) + '_', 'Slice_00' + str(S5) + '_'], y_con)
+
     # files_x = get_file_names_with_strings(['_' + X + '_' + y1])
     ## Once filtered, we have to make depth constraints
-
-    LN_numb = j
-    for i in range(len(files_x1)):
-        print('i', i)
-        # os.rename(r'E:/AAU/blob_detection/blob_templates/'+files_x1[i-1], r'E:/AAU/blob_detection/LN/LN_' + str(j) + '_' + files_x1[i-1])
-        # tempel = cv.imread('E:/AAU/blob_detection/blob_templates/' + files_x1[i-1])
-        # cv.imwrite('E:/AAU/blob_detection/LN/LN_' + str(j) + files_x1[i-1], tempel)
-        # os.remove('E:/AAU/blob_detection/blob_templates/' + files_x1[i-1])
-    j = j + 1
     print('files_depth', depth_con, 'len', len(depth_con))
+    LN_numb = j
+    # renaming is wrong, cant find path, last thing needed
+    print("The original list is : " + str(depth_con))
+
+    # using list comprehension
+    # to remove duplicated
+    # from list
+    results = []
+    [results.append(x) for x in depth_con if x not in results]
+
+    # printing list after removal
+    print("The list after removing duplicates : " + str(results))
+    for i in range(len(results)):
+        print('i', i)
+        os.rename('E:/AAU/blob/blob_template/' + results[i-1], 'E:/AAU/blob/LN/LN_' + str(j) + '_' + results[i-1])
+        #os.rename(os.path.join('E:/AAU/blob/blob_template/', depth_con[i-1]),
+                 # os.path.join('E:/AAU/blob/', 'LN_'  + str(j) + '_' + depth_con[i-1]))
+        #tempel = cv.imread('E:/AAU/blob/blob_template/' + depth_con[i-1])
+        #print('img', tempel)
+        #cv.imwrite('E:/AAU/blob/LN/LN_' + str(j) + depth_con[i-1], tempel)
+        #os.remove('E:/AAU/blob/blob_template/' + depth_con[i-1])
+        i = i+1
+    j = j + 1
+
 
     # print('tab', '_' + str(X)  + '_' + str(y1))
     '''
