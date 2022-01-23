@@ -46,13 +46,12 @@ if __name__ == '__main__':
     boxA = [0., 0., 10., 10.]
     boxB = [1., 1., 11., 11.]
     '''
-    boxA = [E[3]-dimensions[1], E[2]-dimensions[1], E[3] + dimensions[1], E[2] + dimensions[1]]
-    boxB = [E1[2]-dimensions[1], E1[3]-dimensions[1], E1[2] + dimensions[1], E1[3] + dimensions[1]]
+    boxA = [E[2]-dimensions[1], E[3]-dimensions[1], E[2] + dimensions[1], E[3] + dimensions[1]]
+    boxB = [E1[3]-dimensions[1], E1[2]-dimensions[1], E1[3] + dimensions[1], E1[2] + dimensions[1]]
     # find corners of template
     correct = bb_intersection_over_union(boxA, boxB)
     print('Correct solution - also analytical: {0}\n'
-          'Solution by published function: {1}\n'
-          'Solution by correction (ptyshevs): {2}'.format(correct, '0.704225352113', '0.680672268908'))
+          .format(correct))
 
     print('Normalizing coordinates in a 100x100 coordinate system')
     boxA = [a / 100. for a in boxA]
@@ -61,8 +60,7 @@ if __name__ == '__main__':
     correct = bb_intersection_over_union(boxA, boxB)
 
     print('Correct solution - also analytical: {0}\n'
-          'Solution by published function: {1}\n'
-          'Solution by correction: {2}'.format(correct, '0.964445166004', '0.680672268908'))
+          .format(correct))
 '''
     print('Two boxes with no overlap')
     boxA = [0., 0., 10., 10.]
